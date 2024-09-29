@@ -1,0 +1,16 @@
+# Eclipse project files
+.settings/
+.project
+.classpath
+
+# IntelliJ IDEA files
+.idea/
+*.iml
+
+# Maven/Gradle output
+target/
+bin/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
