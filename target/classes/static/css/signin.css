@@ -1,0 +1,346 @@
+body {
+    margin: 0;
+    background: url('./luca-bravo-9l_326FISzk-unsplash\ \(1\).jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    /* Maintain aspect ratio */
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.background-glass {
+    position: absolute;
+    /* Cover the entire viewport */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.1);
+    /* Semi-transparent background */
+    backdrop-filter: blur(5px);
+    /* Glass effect */
+    z-index: 1;
+    /* Behind the container */
+}
+
+.container {
+    position: relative;
+    /* Relative positioning */
+    max-width: 600px;
+    width: 100%;
+    margin: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    /* Slightly transparent */
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+    /* Above the glass background */
+    display: flex;
+    /* Use flexbox */
+    flex-direction: column;
+    /* Arrange items vertically */
+    align-items: center;
+    /* Center horizontally */
+    justify-content: center;
+    /* Center vertically */
+}
+
+.header {
+    text-align: center;
+    padding: 15px;
+    background-color: transparent;
+    /* Semi-transparent */
+    border-bottom: 1px solid #ddd;
+    border-radius: 10px 10px 0 0;
+}
+
+.header h5 {
+    margin: 0;
+}
+
+.social-buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.social-buttons a {
+    display: flex;
+    margin: 5px;
+    align-items: center;
+    padding: 8px 10px;
+    
+    border-radius: 5px;
+    background-color: transparent;
+    transition: all 0.2s ease;
+    color: inherit;
+    text-decoration: none;
+}
+
+.google-text {
+    font-weight: bold;
+    color: #B2B2B2;
+    margin-left: 5px;
+}
+
+.social-buttons a:hover {
+    background-color: transparent;
+    opacity: 1;
+}
+
+.social-buttons a:active {
+    color: inherit;
+}
+
+.or-divider {
+    text-align: center;
+    margin: 15px 0;
+}
+
+.or-divider p {
+    display: inline-block;
+    background-color: transparent;
+    padding: 0 8px;
+    color: #888;
+}
+
+.form-container {
+    padding: 15px;
+    display: flex;
+    /* Use flexbox for centering */
+    flex-direction: column;
+    /* Arrange items vertically */
+    align-items: center;
+    /* Center items horizontally */
+    justify-content: center;
+    /* Center items vertically */
+    width: 100%;
+    /* Full width */
+}
+
+.form-group {
+    margin-bottom: 15px;
+    width: 100%;
+    /* Make the form group full width */
+    display: flex;
+    /* Use flexbox */
+    justify-content: center;
+    /* Center horizontally */
+}
+
+.form-group input {
+    width: 90%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    height: 30px;
+    transition: all 0.2s ease;
+}
+
+.form-group input:focus {
+    border:5px solid lightgrey;
+
+    outline: none;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.checkbox-group input {
+    width: 15px;
+    height: 15px;
+    margin-right: 8px;
+}
+
+.checkbox-group label {
+    margin: 0;
+    font-size: 14px;
+    color: #333;
+}
+
+.terms-link {
+    font-weight: bold;
+    color: #333;
+}
+
+/* From Uiverse.io by 212004ALJI */
+.signup-button,
+.signup-button::after {
+    padding: 10px 50px;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    color: black;
+    background-color: transparent;
+    position: relative;
+}
+
+.signup-button::after {
+    --move1: inset(50% 50% 50% 50%);
+    --move2: inset(31% 0 40% 0);
+    --move3: inset(39% 0 15% 0);
+    --move4: inset(45% 0 40% 0);
+    --move5: inset(45% 0 6% 0);
+    --move6: inset(14% 0 61% 0);
+    clip-path: var(--move1);
+    content: 'GLITCH';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: block;
+}
+
+.signup-button:hover::after {
+    animation: glitch_4011 1s;
+    text-shadow: 10 10px 10px black;
+    animation-timing-function: steps(2, end);
+    text-shadow: -3px -3px 0px #1df2f0, 3px 3px 0px #E94BE8;
+    background-color: transparent;
+    border: 3px solid rgb(0, 255, 213);
+}
+
+.signup-button:hover {
+    text-shadow: -1px -1px 0px #1df2f0, 1px 1px 0px #E94BE8;
+}
+
+.signup-button:hover {
+    background-color: transparent;
+    border: 1px solid rgb(0, 255, 213);
+    box-shadow: 0px 10px 10px -10px rgb(0, 255, 213);
+}
+
+@keyframes glitch_4011 {
+    0% {
+        clip-path: var(--move1);
+        transform: translate(0px, -10px);
+    }
+
+    10% {
+        clip-path: var(--move2);
+        transform: translate(-10px, 10px);
+    }
+
+    20% {
+        clip-path: var(--move3);
+        transform: translate(10px, 0px);
+    }
+
+    30% {
+        clip-path: var(--move4);
+        transform: translate(-10px, 10px);
+    }
+
+    40% {
+        clip-path: var(--move5);
+        transform: translate(10px, -10px);
+    }
+
+    50% {
+        clip-path: var(--move6);
+        transform: translate(-10px, 10px);
+    }
+
+    60% {
+        clip-path: var(--move1);
+        transform: translate(10px, -10px);
+    }
+
+    70% {
+        clip-path: var(--move3);
+        transform: translate(-10px, 10px);
+    }
+
+    80% {
+        clip-path: var(--move2);
+        transform: translate(10px, -10px);
+    }
+
+    90% {
+        clip-path: var(--move4);
+        transform: translate(-10px, 10px);
+    }
+
+    100% {
+        clip-path: var(--move1);
+        transform: translate(0);
+    }
+}
+
+.footer {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.footer a {
+    color: #333;
+    font-weight: bold;
+}
+
+/* Additional styles for glitch effect and responsiveness remain unchanged */
+/* From Uiverse.io by Custyyyy */ 
+.design {
+display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    color: #7e97b8;
+    background-color: #e0e8ef;
+    border-style: solid;
+    border-width: 2px 2px 2px 2px;
+    border-color: rgba(255, 255, 255, 0.333);
+    border-radius: 40px 40px 40px 40px;
+    padding: 16px 24px 16px 28px;
+    transform: translate(0px, 0px) rotate(0deg);
+    transition: 0.2s;
+    box-shadow: -4px -2px 16px 0px #ffffff, 4px 2px 16px 0px rgb(95 157 231 / 48%);
+}
+
+/* .design:hover,
+.design:focus {
+ border-color: rgba(0, 0, 0, 0.15);
+ box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+ color: rgba(0, 0, 0, 0.65);
+} */
+
+.design:hover {
+ color: #516d91;
+    background-color: #E5EDF5;
+    box-shadow: -2px -1px 8px 0px #ffffff, 2px 1px 8px 0px rgb(95 157 231 / 48%);
+}
+
+.design:active {
+box-shadow: none;
+}
+
+/* Prevent the blue background on input fields when autofilled */
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px rgba(255, 255, 255, 0.8) inset;
+    /* Match the container background */
+    box-shadow: 0 0 0 30px rgba(255, 255, 255, 0.8) inset;
+    /* Match the container background */
+    -webkit-text-fill-color: #333;
+    /* Text color */
+}
+
+input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 30px rgba(255, 255, 255, 0.8) inset;
+    /* Match the container background */
+    box-shadow: 0 0 0 30px rgba(255, 255, 255, 0.8) inset;
+    /* Match the container background */
+    -webkit-text-fill-color: #333;
+    /* Text color */
+}

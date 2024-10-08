@@ -1,21 +1,30 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
     <title>Login</title>
+    <!-- Make sure the CSS is served from the static resources -->
+    <link rel="stylesheet" th:href="@{/css/login.css}" />
 </head>
 <body>
-    <h1>Login Page</h1>
-    <form action="#" th:action="@{/login}" method="post">
-        <div>
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required />
-        </div>
-        <div>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required />
-        </div>
-        <button type="submit">Login</button>
-    </form>
-    <p th:if="${param.error}">Invalid username or password.</p>
+    <div class="login-box">
+        <p>L O G I N</p>
+        <!-- Traditional form submission via Thymeleaf -->
+        <form th:action="@{/login}" method="post">
+            <div class="user-box">
+                <input id="email" name="username" type="text" required />
+                <label>Email</label>
+            </div>
+            <div class="user-box">
+                <input id="password" name="password" type="password" required />
+                <label>Password</label>
+            </div>
+            <button type="submit">
+                <span></span><span></span><span></span><span></span>Submit
+            </button>
+        </form>
+    </div>
+    <!-- Display error message in case of invalid login -->
+    <p th:if="${param.error}" style="color: red;">Invalid email or password</p>
 </body>
 </html>

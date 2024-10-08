@@ -23,6 +23,21 @@ public class UserService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+    
+    @Autowired
+    private EmployeeService employeeService;
+
+    public User registerEmployee(User user, Employee employee) {
+        // Save the employee first
+        Employee savedEmployee = employeeService.saveEmployee(employee);
+
+        // Associate the employee with the user and encode the password
+        user.setEmployee(savedEmployee);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+
+        // Save the user
+        return userRepository.save(user);
+    }
 
     public User registerUser(User user) {
         // Encrypt password

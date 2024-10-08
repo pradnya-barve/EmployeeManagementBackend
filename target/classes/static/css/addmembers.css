@@ -1,0 +1,236 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    background: url('../image/charlesdeluvio-Lks7vei-eAg-unsplash.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+.container {
+    background: rgba(255, 255, 255);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h2,
+h3 {
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+h2:after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 2px;
+    background: #38caef;
+    margin: 0 auto;
+}
+
+h3 {
+    text-align: left;
+    margin-top: 20px;
+}
+
+.form__group {
+    position: relative;
+    padding: 15px 0 0;
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.form__field {
+    font-family: inherit;
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #9b9b9b;
+    outline: 0;
+    font-size: 17px;
+    color: black;
+    font-weight: 500;
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+}
+
+.form__field::placeholder {
+    color: transparent;
+}
+
+.form__label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 16px;
+    color: #9b9b9b;
+    font-weight: 400;
+    transition: all 0.2s ease;
+    pointer-events: none;
+}
+
+.form__field:focus,
+.form__field:not(:placeholder-shown) {
+    border-bottom: 2px solid #38caef;
+}
+
+.form__field:focus~.form__label,
+.form__field:not(:placeholder-shown)~.form__label {
+    font-size: 13px;
+    color: #38caef;
+    top: -20px;
+    font-weight: 600;
+}
+
+/* Updated Radio button styles */
+.radio-button-container {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.radio-button {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+}
+
+.radio-button__input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.radio-button__label {
+    display: inline-block;
+    padding-left: 30px;
+    margin-bottom: 10px;
+    position: relative;
+    font-size: 15px;
+    color: black;
+    /* Updated color */
+    font-weight: 600;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.radio-button__custom {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #555;
+    transition: all 0.3s ease;
+}
+
+.radio-button__input:checked+.radio-button__label .radio-button__custom {
+    background-color: #38caef;
+    border-color: transparent;
+    transform: scale(0.8);
+    box-shadow: 0 0 20px #38caef80;
+}
+
+.radio-button__input:checked+.radio-button__label {
+    color: #38caef  ;
+}
+
+.radio-button__label:hover .radio-button__custom {
+    transform: scale(1.2);
+    border-color: #38caef;
+    box-shadow: 0 0 20px #38caef80;
+}
+
+/* Submit button styles */
+button {
+    width: 10em;
+    height: 3.5em;
+    border: 3px ridge #38caef;
+    outline: none;
+    background-color: transparent;
+    color: black;
+    font-weight: bold;
+    transition: 1s;
+    border-radius: 0.3em;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+    position: relative;
+}
+
+button::after,
+button::before {
+    content: "";
+    position: absolute;
+    width: 95%;
+    height: 40%;
+    background-color: #ffffff;
+    transition: 0.5s;
+    transform-origin: center;
+}
+
+button::after {
+    top: -10px;
+    left: 3%;
+}
+
+button::before {
+    top: 80%;
+    left: 3%;
+}
+
+button:hover::before,
+button:hover::after {
+    transform: scale(0);
+}
+
+button:hover {
+    box-shadow: inset 0px 0px 25px #38caef;
+}
+
+/* Styling the date input field */
+input[type="date"] {
+    font-family: inherit;
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #9b9b9b;
+    outline: 0;
+    font-size: 17px;
+    color: black;
+    font-weight: 600;
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+    appearance: none;
+    /* Removes native date picker styling */
+    -webkit-appearance: none;
+    /* For Safari and Chrome */
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(0.7) sepia(1) saturate(2) hue-rotate(180deg);
+    /* Custom style for the date picker icon */
+}
+
+input[type="date"]:focus {
+    border-bottom: 2px solid #38caef;
+}
+
+/* Style the placeholder if the date input is not selected */
+input[type="date"]:not(:valid)::before {
+    content: attr(placeholder);
+    color: #9b9b9b;
+    font-weight: 400;
+    padding-right: 10px;
+}

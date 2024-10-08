@@ -39,21 +39,31 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .csrf(csrf -> csrf.disable()) // Disable CSRF for testing purposes
+            .csrf(csrf -> csrf.disable()) // Disable CSRF for testing (enable for production)
             .authorizeHttpRequests(auth -> auth
-//                .requestMatchers("/login", "/register", "/test").permitAll() // Allow access to these pages
-            	.anyRequest().permitAll()
-//                .anyRequest().authenticated() // All other endpoints require authentication
+                .requestMatchers("/api/employees","/api/users/register","/", "/index.html","/login", "/register", "/css/**", "/js/**", "/image/**").permitAll() // Allow access to these routes
+                .anyRequest().authenticated() // All other routes need authentication
             )
             .formLogin(form -> form
-                .loginPage("/login")
-                .defaultSuccessUrl("/home", true) // Redirect to home after successful login
-                .permitAll() // Allow everyone to see the login page
+                .loginPage("/login") // Custom login page
+                .successHandler((request, response, authentication) -> {
+                    String role = authentication.getAuthorities().toString();
+                    if (role.contains("ADMIN")) {
+                        response.sendRedirect("/admin-dashboard");
+                    } else if (role.contains("EMPLOYEE")) {
+                        response.sendRedirect("/employee-dashboard");
+                    } else {
+                        response.sendRedirect("/dashboard"); // Default dashboard for other roles
+                    }
+                })
+                .permitAll() // Allow access to the login page for everyone
+                
             )
+            
             .logout(logout -> logout
-                .permitAll() // Allow everyone to perform logout
+                .logoutSuccessUrl("/login?logout").permitAll() // Redirect to login after logout
             );
-
         return http.build();
     }
+
 }

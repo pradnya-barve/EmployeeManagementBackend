@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+  </head>
+  <body>
+    <div class="top-button-container">
+      <button class="button" data-text="Awesome">
+        <span class="actual-text">&nbsp;Welcome&nbsp;</span>
+        <span aria-hidden="true" class="hover-text">&nbsp;Welcome&nbsp;</span>
+      </button>
+    </div>
+
+    <div class="image-button-container">
+      <a href="login.html"><button class="btn">LOGIN</button></a>
+      <img
+        th:src="@{/image/digital-art-andrey-prokopenko-illustration-9.png}"
+        alt="Digital Art"
+      />
+      <a href="signin.html"> <button class="btn">SignIn</button></a>
+    </div>
+  </body>
+</html>

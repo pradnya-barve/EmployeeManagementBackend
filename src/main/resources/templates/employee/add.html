@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Employee</title>
+    <link rel="stylesheet" th:href="@{/css/addmembers.css}" />
+</head>
+<body>
+    <div class="container">
+        <h2>Add Employee</h2>
+        <form action="#" th:action="@{/employees/save}" th:object="${employee}" method="post">
+
+            <!-- CSRF Token 
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" /> -->
+
+            <!-- Personal Details -->
+            <h3>Personal Details</h3>
+            <div class="form__group field">
+                <input type="text" name="fullName" class="form__field" placeholder="Full Name" required />
+                <label for="fullName" class="form__label">Full Name</label>
+            </div>
+            <div class="form__group field">
+                <input type="date" name="dateOfBirth" class="form__field" required />
+                <label for="dateOfBirth" class="form__label">Date of Birth</label>
+            </div>
+            <div class="form__group field">
+                <input type="number" name="age" class="form__field" placeholder="Age" required min="1" max="999" />
+                <label for="age" class="form__label">Age</label>
+            </div>
+
+            <h3>Gender</h3>
+            <div class="radio-button-container">
+                <div class="radio-button">
+                    <input type="radio" id="male" name="gender" class="radio-button__input" required value="Male" />
+                    <label for="male" class="radio-button__label">
+                        <span class="radio-button__custom"></span>
+                        Male
+                    </label>
+                </div>
+                <div class="radio-button">
+                    <input type="radio" id="female" name="gender" class="radio-button__input" required value="Female" />
+                    <label for="female" class="radio-button__label">
+                        <span class="radio-button__custom"></span>
+                        Female
+                    </label>
+                </div>
+            </div>
+
+            <!-- Current Address -->
+            <h3>Current Address</h3>
+            <div class="form__group field">
+                <input type="text" name="currentAddress.addressLine1" class="form__field" placeholder="Address Line 1" required />
+                <label for="currentAddress.addressLine1" class="form__label">Address Line 1</label>
+            </div>
+            <div class="form__group field">
+                <input type="text" name="currentAddress.addressLine2" class="form__field" placeholder="Address Line 2" />
+                <label for="currentAddress.addressLine2" class="form__label">Address Line 2</label>
+            </div>
+            <div class="form__group field">
+                <input type="text" name="currentAddress.city" class="form__field" placeholder="City" required />
+                <label for="currentAddress.city" class="form__label">City</label>
+            </div>
+            <div class="form__group field">
+                <input type="text" name="currentAddress.pinCode" class="form__field" placeholder="Pin Code" pattern="\d{6}" required />
+                <label for="currentAddress.pinCode" class="form__label">Pin Code</label>
+            </div>
+
+            <!-- Permanent Address -->
+            <h3>Permanent Address</h3>
+            <div class="form__group field">
+                <input type="text" name="permanentAddress.addressLine1" class="form__field" placeholder="Address Line 1" required />
+                <label for="permanentAddress.addressLine1" class="form__label">Address Line 1</label>
+            </div>
+            <div class="form__group field">
+                <input type="text" name="permanentAddress.addressLine2" class="form__field" placeholder="Address Line 2" />
+                <label for="permanentAddress.addressLine2" class="form__label">Address Line 2</label>
+            </div>
+            <div class="form__group field">
+                <input type="text" name="permanentAddress.city" class="form__field" placeholder="City" required />
+                <label for="permanentAddress.city" class="form__label">City</label>
+            </div>
+            <div class="form__group field">
+                <input type="text" name="permanentAddress.pinCode" class="form__field" placeholder="Pin Code" pattern="\d{6}" required />
+                <label for="permanentAddress.pinCode" class="form__label">Pin Code</label>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="form__group field">
+                <input type="tel" name="mobile" class="form__field" placeholder="Mobile" pattern="\d{10}" required />
+                <label for="mobile" class="form__label">Mobile</label>
+            </div>
+            <div class="form__group field">
+                <input type="email" name="personalMail" class="form__field" placeholder="Personal Email" required />
+                <label for="personalMail" class="form__label">Personal Email</label>
+            </div>
+            <div class="form__group field">
+                <input type="text" name="emergencyContactName" class="form__field" placeholder="Emergency Contact Name" required />
+                <label for="emergencyContactName" class="form__label">Emergency Contact Name</label>
+            </div>
+            <div class="form__group field">
+                <input type="tel" name="emergencyContactMobile" class="form__field" placeholder="Emergency Contact Mobile" pattern="\d{10}" required />
+                <label for="emergencyContactMobile" class="form__label">Emergency Contact Mobile</label>
+            </div>
+
+            <!-- Professional Details -->
+            <h3>Professional Details</h3>
+            <div class="form__group field">
+                <input type="text" name="employmentCode" class="form__field" placeholder="Employment Code" required />
+                <label for="employmentCode" class="form__label">Employment Code</label>
+            </div>
+            <div class="form__group field">
+                <input type="email" name="companyMail" class="form__field" placeholder="Company Email" required />
+                <label for="companyMail" class="form__label">Company Email</label>
+            </div>
+            <div class="form__group field">
+                <input type="tel" name="officePhone" class="form__field" placeholder="Office Phone" pattern="\d{8,12}" />
+                <label for="officePhone" class="form__label">Office Phone</label>
+            </div>
+
+            <!-- Finance Section -->
+            <h3>Finance</h3>
+            <div class="form__group field">
+                <input type="text" name="panCard" class="form__field" placeholder="PAN Card" required />
+                <label for="panCard" class="form__label">PAN Card</label>
+            </div>
+            <div class="form__group field">
+                <input type="text" name="aadharCard" class="form__field" placeholder="Aadhaar Card" required />
+                <label for="aadharCard" class="form__label">Aadhaar Card</label>
+            </div>
+            <div class="form__group field">
+                <input type="text" name="bankDetails.bankAccountNumber" class="form__field" placeholder="Bank Account Number" required />
+                <label for="bankDetails.bankAccountNumber" class="form__label">Bank Account Number</label>
+            </div>
+            <div class="form__group field">
+                <input type="text" name="bankDetails.ifscCode" class="form__field" placeholder="IFSC Code" required />
+                <label for="bankDetails.ifscCode" class="form__label">IFSC Code</label>
+            </div>
+
+            <button type="submit">Add Employee</button>
+        </form>
+    </div>
+</body>
+</html>

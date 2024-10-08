@@ -25,6 +25,11 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Role role; // Enum for role (e.g., ADMIN, EMPLOYEE)
+    
+ // One-to-one relationship with Employee (optional, depending on your system design)
+    @OneToOne
+    @JoinColumn(name = "employee_id", referencedColumnName = "id")
+    private Employee employee;
 
     // Other fields can be added as necessary
     public Role getRole() {

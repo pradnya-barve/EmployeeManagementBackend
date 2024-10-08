@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Dashboard</title>
+</head>
+<body>
+    <h1>Welcome, Employee!</h1>
+    <p>You are logged in as an employee.</p>
+
+    <!-- Logout Link -->
+    <a href="/logout" id="logoutButton">Logout</a>
+
+    <script>
+        // Clear local storage upon logout
+        document.getElementById("logoutButton").addEventListener('click', () => {
+            localStorage.clear(); // Clear user data from localStorage
+        });
+    </script>
+</body>
+</html>
