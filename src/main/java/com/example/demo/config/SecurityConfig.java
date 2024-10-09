@@ -41,7 +41,8 @@ public class SecurityConfig {
         http
             .csrf(csrf -> csrf.disable()) // Disable CSRF for testing (enable for production)
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/employees","/api/users/register","/", "/index.html","/login", "/register", "/css/**", "/js/**", "/image/**").permitAll() // Allow access to these routes
+            	.requestMatchers("/employees/**").hasAnyRole("ADMIN")
+                .requestMatchers("/api/employees","/api/users/register","/", "/employees/edit/{id}", "/api/employees/update", "/index.html","/login", "/register", "/css/**", "/js/**", "/image/**").permitAll() // Allow access to these routes
                 .anyRequest().authenticated() // All other routes need authentication
             )
             .formLogin(form -> form

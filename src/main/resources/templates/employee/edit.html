@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="editEmp.css" />
+    <link rel="stylesheet" th:href="@{/css/editEmp.css}" />
     <title>Edit Employee Details</title>
     <style>
       .d-none {
@@ -36,14 +36,15 @@
   <body>
     <div class="container">
       <h2>Edit Employee Details</h2>
-      <form id="editEmployeeForm">
+      <form id="editEmployeeForm" th:action="@{/employees/edit/{id}(id=${employee.id})}" method="post" data-id="${employee.id}">
+<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+
         <div class="form__group">
           <select id="editField" class="form__field" onchange="showEditField()">
             <option value="">Select a field to edit</option>
             <option value="fullName">Full Name</option>
             <option value="dateOfBirth">Date of Birth</option>
             <option value="age">Age</option>
-            <option value="gender">Gender</option>
             <option value="currentCity">Current City</option>
             <option value="currentAddress">Current Address</option>
             <option value="mobile">Mobile</option>
@@ -74,153 +75,174 @@
             class="form__field"
             placeholder="Enter Full Name"
             spellcheck="false"
+            th:value="${employee.fullName}"
             required
           />
         </div>
+        
         <div id="dateOfBirthField" class="form__group d-none">
-          <input type="date" class="form__field" required />
+          <input type="date" name="dateOfBirth" class="form__field" value="1990-01-01" required>
+
         </div>
+        
         <div id="ageField" class="form__group d-none">
           <input
             type="number"
             class="form__field"
             placeholder="Enter Age"
-            min="1"
-            max="120"
+            th:value="${employee.age}"
             required
           />
         </div>
-        <div id="genderField" class="form__group d-none">
-          <select class="form__field" required>
-            <option value="">Select Gender</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
+      
         <div id="currentCityField" class="form__group d-none">
           <input
             type="text"
             class="form__field"
             placeholder="Enter Current City"
+            th:value="${employee.currentAddress.city}"
             required
           />
         </div>
+        
         <div id="currentAddressField" class="form__group d-none">
           <input
             type="text"
             class="form__field"
             placeholder="Enter Current Address"
+            th:value="${employee.currentAddress.addressLine1}"
             required
           />
         </div>
+        
         <div id="mobileField" class="form__group d-none">
           <input
             type="tel"
             class="form__field"
+            name="mobile"
             placeholder="Enter Mobile Number"
-            pattern="\d{10}"
+            th:value="${employee.mobile}"
             required
           />
         </div>
+        
         <div id="emailField" class="form__group d-none">
           <input
             type="email"
             class="form__field"
-            placeholder="Enter Email"
+            placeholder="Enter Personal Email"
+            th:value="${employee.personalMail}"
             required
           />
         </div>
+        
         <div id="emergencyContactNameField" class="form__group d-none">
           <input
             type="text"
             class="form__field"
             placeholder="Enter Emergency Contact Name"
+            th:value="${employee.emergencyContactName}"
             required
           />
         </div>
+        
         <div id="emergencyContactMobileField" class="form__group d-none">
           <input
             type="tel"
             class="form__field"
+            name="emergencyContactMobile"
             placeholder="Enter Emergency Contact Mobile"
-            pattern="\d{10}"
+            th:value="${employee.emergencyContactMobile}"
             required
           />
         </div>
+        
         <div id="employmentCodeField" class="form__group d-none">
           <input
-            type="number"
+            type="text"
             class="form__field"
+            name="employmentCode"
             placeholder="Enter Employment Code (6 Digits)"
-            min="100000"
-            max="999999"
+            th:value="${employee.employmentCode}"
             required
           />
         </div>
+        
         <div id="companyMailField" class="form__group d-none">
           <input
             type="email"
             class="form__field"
             placeholder="Enter Company Mail"
+            th:value="${employee.companyMail}"
             required
           />
         </div>
+        
         <div id="officePhoneField" class="form__group d-none">
           <input
             type="tel"
             class="form__field"
             placeholder="Enter Office Phone"
-            pattern="\d{8,12}"
+            th:value="${employee.officePhone}"
             required
           />
         </div>
+        
         <div id="officeAddressField" class="form__group d-none">
           <input
             type="text"
             class="form__field"
             placeholder="Enter Office Address Line 1"
+            th:value="${employee.officeAddress.addressLine1}"
             required
           />
           <input
             type="text"
             class="form__field"
             placeholder="Enter Office Address Line 2"
+            th:value="${employee.officeAddress.addressLine2}"
           />
           <input
             type="number"
             class="form__field"
-            placeholder="Enter Pin Code (6 Digits)"
-            min="100000"
-            max="999999"
+            name="officePinCode"
+            placeholder="Enter Office Pin Code (6 Digits)"
+            th:value="${employee.officeAddress.pinCode}"
             required
           />
         </div>
+        
         <div id="reportingManagerField" class="form__group d-none">
           <input
             type="text"
             class="form__field"
-            placeholder="Enter Reporting Manager Code or Mail"
+            placeholder="Enter Reporting Manager Name"
+            th:value="${employee.reportingManager}"
             required
           />
         </div>
+        
         <div id="hrNameField" class="form__group d-none">
           <input
             type="text"
             class="form__field"
             placeholder="Enter HR Name"
+            th:value="${employee.hrName}"
             required
           />
         </div>
+        
         <div id="employmentHistoryField" class="form__group d-none">
           <textarea
             class="form__field"
+            name="employmentHistory"
             placeholder="Enter Employment History"
             required
-          ></textarea>
+          >[EmploymentHistory(companyName=null, joiningDate=null, endDate=2020-12-31)]</textarea>
         </div>
+        
         <div id="dateOfJoiningField" class="form__group d-none">
-          <input type="date" class="form__field" required />
+          <input type="date" class="form__field" th:value="${employee.dateOfJoining}" required />
         </div>
 
         <!-- Finance Section -->
@@ -229,30 +251,37 @@
             type="text"
             class="form__field"
             placeholder="Enter PAN Card Number"
+            th:value="${employee.panCard}"
             required
           />
         </div>
+        
         <div id="aadhaarCardField" class="form__group d-none">
           <input
             type="text"
             class="form__field"
             placeholder="Enter Aadhaar Card Number"
+            th:value="${employee.aadharCard}"
             required
           />
         </div>
+        
         <div id="bankDetailsField" class="form__group d-none">
           <textarea
             class="form__field"
+            name="bankDetails"
             placeholder="Enter Bank Details"
             required
-          ></textarea>
+          >BankDetails(bankName=Bank XYZ, branch=null, ifscCode=BANK001)</textarea>
         </div>
+        
         <div id="ctcBreakupField" class="form__group d-none">
           <textarea
             class="form__field"
+            name="ctcBreakup"
             placeholder="Enter CTC Breakup"
             required
-          ></textarea>
+          >1200000.0</textarea>
         </div>
 
         <div class="btncontainer">
@@ -272,7 +301,6 @@
           "fullNameField",
           "dateOfBirthField",
           "ageField",
-          "genderField",
           "currentCityField",
           "currentAddressField",
           "mobileField",
@@ -305,27 +333,9 @@
             .classList.remove("d-none");
         }
       }
+     // document.getElementById(`${selectedField}Field`).classList.remove("d-none");
+
       const container = document.querySelector(".container");
-      
-      document.getElementById("editEmployeeForm").onsubmit = function(event) {
-    	  let isValid = true;
-    	  const fieldsToCheck = [...document.querySelectorAll('.form__field')];
-
-    	  fieldsToCheck.forEach(field => {
-    	    if (field.required && !field.value) {
-    	      isValid = false;
-    	      field.classList.add('error'); // Add an error class for styling
-    	    } else {
-    	      field.classList.remove('error');
-    	    }
-    	  });
-
-    	  if (!isValid) {
-    	    event.preventDefault(); // Prevent form submission if validation fails
-    	    alert("Please fill in all required fields.");
-    	  }
-    	};
-
 
       // On mouse enter (hover), change background and font color
       container.addEventListener("mouseenter", () => {
@@ -338,6 +348,40 @@
         document.body.style.backgroundColor = "white"; // Revert to white background
         document.body.style.color = "black"; // Revert to black font
       });
+      
+      document.getElementById('editEmployeeForm').addEventListener('submit', function(event) {
+    	    event.preventDefault(); // Prevent the default form submission
+
+    	    // Get the dynamic ID from the form's data-id attribute
+    	    const employeeId = this.getAttribute('data-id');
+
+    	    // Gather form data
+    	    const formData = new URLSearchParams(new FormData(this));
+
+    	    // Make the fetch request using the dynamic ID
+    	    fetch(`/employees/edit/${employeeId}`, {
+    	        method: 'POST',
+    	        headers: {
+    	            'Content-Type': 'application/x-www-form-urlencoded',
+    	        },
+    	        body: formData,
+    	    })
+    	    .then(response => {
+    	        if (!response.ok) {
+    	            throw new Error('Network response was not ok ' + response.statusText);
+    	        }
+    	        return response.text(); // or response.json() if you expect JSON response
+    	    })
+    	    .then(data => {
+    	        console.log('Success:', data); // Handle success, maybe redirect or show a message
+    	        window.location.href = '/employees'; // Redirect after successful update
+    	    })
+    	    .catch((error) => {
+    	        console.error('Error:', error); // Handle errors here
+    	    });
+    	});
+
+
     </script>
   </body>
 </html>

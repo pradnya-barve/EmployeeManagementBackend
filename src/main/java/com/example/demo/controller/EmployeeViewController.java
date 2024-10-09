@@ -4,6 +4,7 @@ import com.example.demo.entity.Employee;
 import com.example.demo.entity.User;
 import com.example.demo.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -35,6 +36,7 @@ public class EmployeeViewController {
     public String addEmployee(@ModelAttribute Employee employee, BindingResult result) {
         // Perform validations here
     	if (result.hasErrors()) {
+    		System.out.println(result.getAllErrors());  
             return "employee/add"; // Return to the form if there are validation errors
         }
         employeeService.createEmployee(employee);
@@ -60,16 +62,36 @@ public class EmployeeViewController {
         return "employee/edit";
     }
 
+//    @PostMapping("/edit/{id}")
+//    public String updateEmployee(@PathVariable Long id, @ModelAttribute Employee employee) {
+//        // Perform updates
+//    	System.out.println("Received Employee: " + employee);
+//        employeeService.updateEmployee(id, employee);
+//        return "redirect:/admin-dashboard";
+//    }
+    
+//    @PostMapping("/edit/{id}")
+//    public ResponseEntity<String> updateEmployee(@PathVariable Long id, @ModelAttribute Employee employee) {
+//        System.out.println("Received Employee: " + employee);
+//        employeeService.updateEmployee(id, employee);
+//        return ResponseEntity.ok("Employee updated successfully");
+//    }
+    
     @PostMapping("/edit/{id}")
-    public String updateEmployee(@PathVariable Long id, @ModelAttribute Employee employee) {
-        // Perform updates
+    public String updateEmployee(@PathVariable Long id, @ModelAttribute Employee employee, BindingResult result) {
+        if (result.hasErrors()) {
+            return "employee/edit"; // Return to the form if there are validation errors
+        }
         employeeService.updateEmployee(id, employee);
-        return "redirect:/employees";
+        return "redirect:/employees"; // Redirect after successful update
     }
+
+
+
 
     @PostMapping("/delete/{id}")
     public String deleteEmployee(@PathVariable Long id) {
         employeeService.deleteEmployee(id);
-        return "redirect:/employees";
+        return "redirect:/admin-dashboard";
     }
 }

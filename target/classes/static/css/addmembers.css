@@ -3,7 +3,7 @@ body {
     justify-content: center;
     align-items: flex-start;
     min-height: 100vh;
-    background: url('../image/charlesdeluvio-Lks7vei-eAg-unsplash.jpg') no-repeat center center fixed;
+    background: url('./charlesdeluvio-Lks7vei-eAg-unsplash.jpg') no-repeat center center fixed;
     background-size: cover;
     font-family: Arial, sans-serif;
     overflow-y: auto;
@@ -153,7 +153,7 @@ h3 {
 }
 
 /* Submit button styles */
-button {
+.btn {
     width: 10em;
     height: 3.5em;
     border: 3px ridge #38caef;
@@ -169,8 +169,8 @@ button {
     position: relative;
 }
 
-button::after,
-button::before {
+.btn::after,
+.btn::before {
     content: "";
     position: absolute;
     width: 95%;
@@ -180,22 +180,22 @@ button::before {
     transform-origin: center;
 }
 
-button::after {
+.btn::after {
     top: -10px;
     left: 3%;
 }
 
-button::before {
+.btn::before {
     top: 80%;
     left: 3%;
 }
 
-button:hover::before,
-button:hover::after {
+.btn:hover::before,
+.btn:hover::after {
     transform: scale(0);
 }
 
-button:hover {
+.btn:hover {
     box-shadow: inset 0px 0px 25px #38caef;
 }
 
@@ -233,4 +233,84 @@ input[type="date"]:not(:valid)::before {
     color: #9b9b9b;
     font-weight: 400;
     padding-right: 10px;
+}
+
+.positionBack {
+    position: absolute;
+    /* Use absolute positioning */
+    top: 20px;
+    /* Adjust the distance from the top */
+    right: 20px;
+}
+
+/* From Uiverse.io by vinodjangid07 */
+.back {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition-duration: .3s;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+    background-color: rgb(255, 65, 65);
+}
+
+/* plus sign */
+.sign {
+    width: 100%;
+    transition-duration: .3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sign svg {
+    width: 17px;
+}
+
+.sign svg path {
+    fill: white;
+}
+
+/* text */
+.text {
+    position: absolute;
+    right: 0%;
+    width: 0%;
+    opacity: 0;
+    color: white;
+    font-size: 1.2em;
+    font-weight: 600;
+    transition-duration: .3s;
+}
+
+/* hover effect on button width */
+.back:hover {
+    width: 125px;
+    border-radius: 40px;
+    transition-duration: .3s;
+}
+
+.back:hover .sign {
+    width: 30%;
+    transition-duration: .3s;
+    padding-left: 8px;
+}
+
+/* hover effect button's text */
+.back:hover .text {
+    opacity: 1;
+    width: 70%;
+    transition-duration: .3s;
+    padding-right: 10px;
+}
+
+/* button click effect*/
+.back:active {
+    transform: translate(2px, 2px);
 }
