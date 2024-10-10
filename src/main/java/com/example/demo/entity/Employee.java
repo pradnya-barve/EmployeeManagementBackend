@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -89,7 +90,7 @@ public class Employee {
     private List<EmploymentHistory> employmentHistory; // Ensure fields do not conflict
 
     @Column(nullable = false)
-    private String dateOfJoining;
+    private LocalDate dateOfJoining;
 
     // Project Details
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -107,4 +108,9 @@ public class Employee {
     private double ctcBreakup;
 
     // Additional fields and methods as needed
+    
+    public void setDateOfJoining(LocalDate dateOfJoining) {
+        this.dateOfJoining = dateOfJoining;
+    }
+
 }

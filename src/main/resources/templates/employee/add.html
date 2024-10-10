@@ -13,6 +13,7 @@
 
             <!-- CSRF Token 
             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" /> -->
+            
 
             <!-- Personal Details -->
             <h3>Personal Details</h3>
@@ -29,6 +30,7 @@
                 <label for="age" class="form__label">Age</label>
             </div>
 
+            <!-- Gender -->
             <h3>Gender</h3>
             <div class="radio-button-container">
                 <div class="radio-button">
@@ -117,6 +119,14 @@
                 <input type="tel" name="officePhone" class="form__field" placeholder="Office Phone" pattern="\d{8,12}" />
                 <label for="officePhone" class="form__label">Office Phone</label>
             </div>
+            <div class="form__group field">
+                <input type="text" name="hrName" class="form__field" placeholder="HR Name" required/>
+                <label for="hrName" class="form__label">HR Name</label>
+            </div>
+            <div class="form__group field">
+                <input type="text" name="reportingManager" class="form__field" placeholder="Manager Name" required/>
+                <label for="reportingManager" class="form__label">Manager Name</label>
+            </div>
 
             <!-- Finance Section -->
             <h3>Finance</h3>
@@ -136,6 +146,9 @@
                 <input type="text" name="bankDetails.ifscCode" class="form__field" placeholder="IFSC Code" required />
                 <label for="bankDetails.ifscCode" class="form__label">IFSC Code</label>
             </div>
+
+            <!-- Add a hidden field for password generation -->
+            <input type="hidden" name="generatedPassword" th:value="${generatedPassword}" />
 
             <button type="submit">Add Employee</button>
         </form>

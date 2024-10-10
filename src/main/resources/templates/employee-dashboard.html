@@ -3,19 +3,207 @@
 <head>
     <meta charset="UTF-8">
     <title>Employee Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/empDashboard.css}" />
 </head>
 <body>
-    <h1>Welcome, Employee!</h1>
-    <p>You are logged in as an employee.</p>
+    
+    <div class="sidebar">
+      <h2>Employee Details</h2>
 
-    <!-- Logout Link -->
-    <a href="/logout" id="logoutButton">Logout</a>
+      <div class="design">
+        <button class="value" id="personalBtn">
+          <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" data-name="Layer 2">
+            <path fill="#7D8590" d="m1.5 13v1a.5.5 0 0 0 .3379.4731 18.9718 18.9718 0 0 0 6.1621 1.0269 18.9629 18.9629 0 0 0 6.1621-1.0269.5.5 0 0 0 .3379-.4731v-1a6.5083 6.5083 0 0 0 -4.461-6.1676 3.5 3.5 0 1 0 -4.078 0 6.5083 6.5083 0 0 0 -4.461 6.1676zm4-9a2.5 2.5 0 1 1 2.5 2.5 2.5026 2.5026 0 0 1 -2.5-2.5zm2.5 3.5a5.5066 5.5066 0 0 1 5.5 5.5v.6392a18.08 18.08 0 0 1 -11 0v-.6392a5.5066 5.5066 0 0 1 5.5-5.5z"></path>
+          </svg>
+          P E R S O N A L
+        </button>
+        <button class="value" id="professionalBtn">
+          <svg id="Line" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#7D8590" id="XMLID_1646_" d="M20 4h-16a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h4v2h8v-2h4a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zM8 20v-2h8v2H8zm12-4H4V6h16v10zM8 8h8v2H8V8z"></path>
+          </svg>
+          P R O F E S S I O N A L
+        </button>
+        <button class="value" id="financeBtn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#7D8590">
+            <text x="50%" y="35%" dominant-baseline="middle" text-anchor="middle" font-size="24" fill="#7D8590">$</text>
+          </svg>
+          F I N A N C E
+        </button>
+      </div>
+    </div>
+
+    <div class="positionBack">
+      <a href="login.html">
+        <button class="back">
+          
+        <a href="/logout" class="button">Logout</a>
+      </a>
+    </div>
+    
+    
+
+    <div class="content" id="personal">
+      <h2>Personal Details</h2>
+      <section>
+        <label>
+          Full Name:
+          <input class="input" type="text" name="fullName" value="John Doe" />
+        </label>
+        <label>
+          Date of Birth:
+          <input class="input" type="date" name="dob" value="1990-01-01" />
+        </label>
+        <label>
+          Age:
+          <input class="input" type="number" name="age" value="34" />
+        </label>
+        <label>
+          Gender:
+          <select class="input" name="gender">
+            <option value="male" selected>Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select>
+        </label>
+      </section>
+      <section>
+        <h2>Current Address</h2>
+        <label>
+          City:
+          <input class="input" type="text" name="currentCity" value="New York" />
+        </label>
+        <label>
+          Address Line 1:
+          <input class="input" type="text" name="currentAddress1" value="123 Main St" />
+        </label>
+        <label>
+          Address Line 2:
+          <input class="input" type="text" name="currentAddress2" value="Apt 4B" />
+        </label>
+        <label>
+          Pincode:
+          <input class="input" type="text" name="currentPincode" value="10001" />
+        </label>
+      </section>
+      <section>
+        <h2>Permanent Address</h2>
+        <label>
+          City:
+          <input class="input" type="text" name="permanentCity" value="Los Angeles" />
+        </label>
+        <label>
+          Address Line 1:
+          <input class="input" type="text" name="permanentAddress1" value="456 Elm St" />
+        </label>
+        <label>
+          Address Line 2:
+          <input class="input" type="text" name="permanentAddress2" value="Suite 300" />
+        </label>
+        <label>
+          Pincode:
+          <input class="input" type="text" name="permanentPincode" value="90001" />
+        </label>
+        <label>
+          Personal Email:
+          <input class="input" type="email" name="personalEmail" value="john.doe@example.com" />
+        </label>
+        <label>
+          Emergency Contact Name:
+          <input class="input" type="text" name="emergencyContactName" value="Jane Doe" />
+        </label>
+        <label>
+          Emergency Contact Number:
+          <input class="input" type="text" name="emergencyContactNumber" value="555-1234" />
+        </label>
+      </section>
+    </div>
+
+    <div class="content" id="professional">
+      <h2>Professional Details</h2>
+      <section>
+        <label>
+          Employee Code:
+          <input class="input" type="text" name="employeeCode" value="EMP123456" />
+        </label>
+        <label>
+          Company Email:
+          <input class="input" type="email" name="companyEmail" value="john.doe@company.com" />
+        </label>
+        <label>
+          Office Phone:
+          <input class="input" type="text" name="officePhone" value="555-5678" />
+        </label>
+      </section>
+      <section>
+        <h2>Position Details</h2>
+        <label>
+          Department:
+          <input class="input" type="text" name="department" value="Engineering" />
+        </label>
+        <label>
+          Position:
+          <input class="input" type="text" name="position" value="Software Engineer" />
+        </label>
+        <label>
+          Joining Date:
+          <input class="input" type="date" name="joiningDate" value="2020-06-15" />
+        </label>
+      </section>
+    </div>
+
+    <div class="content" id="finance">
+  <h2>Finance Details</h2>
+  <section>
+    <label>
+      Bank Name:
+      <input class="input" type="text" name="bankName" value="Bank of America" />
+    </label>
+    <label>
+      Account Number:
+      <input class="input" type="text" name="accountNumber" value="123456789" />
+    </label>
+    <label>
+      IFSC Code:
+      <input class="input" type="text" name="ifscCode" value="BOA123456" />
+    </label>
+  </section>
+  
+  
+<a th:href="@{/employees/download-payslip}" class="button">
+    <span class="button__text">Download</span>
+</a>
+
+</div>
+
+</body>
+</html>
+
 
     <script>
-        // Clear local storage upon logout
-        document.getElementById("logoutButton").addEventListener('click', () => {
-            localStorage.clear(); // Clear user data from localStorage
+    
+    
+    
+    function downloadPaySlip() {
+    	window.location.href = '/employees/download-payslip';  // Update the path according to your controller mapping
+    }
+
+      function showSection(sectionId) {
+        const sections = document.querySelectorAll(".content");
+        sections.forEach((section) => {
+          section.classList.remove("show");
         });
+        document.getElementById(sectionId).classList.add("show");
+      }
+
+      document
+        .getElementById("personalBtn")
+        .addEventListener("click", () => showSection("personal"));
+      document
+        .getElementById("professionalBtn")
+        .addEventListener("click", () => showSection("professional"));
+      document
+        .getElementById("financeBtn")
+        .addEventListener("click", () => showSection("finance"));
     </script>
-</body>
+  </body>
 </html>

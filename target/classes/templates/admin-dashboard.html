@@ -33,9 +33,10 @@
                     <td th:text="${employee.reportingManager}"></td>
                     <td>
                         <a class="edit-btn" data-id="${employee.id}" th:href="@{/employees/edit/{id}(id=${employee.id})}">Edit</a>
-                        <form class="delete-btn" data-id="${employee.id}" th:action="@{/employees/delete/{id}(id=${employee.id})}" method="post" style="display:inline;">
-                            <button type="submit">Delete</button>
-                        </form>
+                        <form th:action="@{'/employees/delete/' + ${employee.id}}" method="post" onsubmit="return confirmDelete()">
+						    <button type="submit">Delete</button>
+						</form>
+
                     </td>
                 </tr>
             </tbody>
@@ -43,10 +44,14 @@
       </table>
     </div>
     <script>
+    
+    function confirmDelete() {
+        return confirm("Are you sure you want to delete this employee?");
+    }
     	document.addEventListener("DOMContentLoaded",  () => {
         console.log("DOM fully loaded and parsed");
 
-        // Delete button logic - Confirmation and success message
+     // Delete button logic - Confirmation and success message
         document.querySelectorAll('.delete-btn').forEach(form => {
             console.log("Attaching listener to delete button");
 

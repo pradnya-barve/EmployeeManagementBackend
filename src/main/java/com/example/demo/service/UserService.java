@@ -26,6 +26,11 @@ public class UserService {
     
     @Autowired
     private EmployeeService employeeService;
+    
+    public void save(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        userRepository.save(user);
+    }
 
     public User registerEmployee(User user, Employee employee) {
         // Save the employee first
@@ -48,16 +53,29 @@ public class UserService {
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
+    
+   
+
 
     public User getUserById(Long id) {
         return userRepository.findById(id).orElse(null);
     }
     
+    
     public User getUserByEmail(String email) {
-    	return userRepository.findByEmail(email).orElse(null);
+        User user = userRepository.findByEmail(email).orElse(null);
+        if (user != null) {
+            System.out.println("User found: " + user.getEmail());
+        } else {
+            System.out.println("User not found for email: " + email);
+        }
+        return user;
     }
-
-
+    
+ // New method to find user by email
+    public User findUserByEmail(String email) {
+        return userRepository.findByEmail(email).orElse(null);
+    }
 
     public User updateUser(Long id, User userDetails) {
         User user = getUserById(id);
@@ -72,4 +90,24 @@ public class UserService {
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
     }
+    
+    public boolean checkPassword(String email, String providedPassword) {
+        User user = userRepository.findByEmail(email).orElse(null);
+
+        if (user == null) {
+            System.out.println("User not found for email: " + email);
+            return false; // User not found
+        }
+
+        // Log the stored password and the provided password
+        System.out.println("Stored Password (encoded): " + user.getPassword());
+        System.out.println("Provided Password: " + providedPassword);
+
+        // Check if the provided password matches the stored password
+        boolean matches = passwordEncoder.matches(providedPassword, user.getPassword());
+        System.out.println("Password matches: " + matches);
+        
+        return matches;
+    }
+
 }

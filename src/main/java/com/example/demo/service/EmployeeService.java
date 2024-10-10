@@ -1,10 +1,15 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.Employee;
+import com.example.demo.entity.Role;
+import com.example.demo.entity.User;
 import com.example.demo.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.*;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
+import org.springframework.mail.javamail.JavaMailSender;
+import java.security.SecureRandom;
 import java.util.List;
 
 @Service
@@ -12,12 +17,74 @@ public class EmployeeService {
 
     @Autowired
     private EmployeeRepository employeeRepository;
+    
+    @Autowired
+    private UserService userService;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+    
+    @Autowired
+    private JavaMailSender mailSender;
+    
     public Employee createEmployee(Employee employee) {
-        // Validation logic for mandatory fields
+        // Validate the employee fields
         validateEmployee(employee);
-        return employeeRepository.save(employee);
+
+        // Save employee in the Employee table
+        Employee savedEmployee = employeeRepository.save(employee);
+
+        // Generate a random password for the new user
+        String randomPassword = generateRandomPassword();
+
+        // Create and save the user for the employee
+        createUserForEmployee(employee, randomPassword);
+
+        // Send email with login credentials (add this here to keep the password flow consistent)
+        sendEmailWithCredentials(employee.getCompanyMail(), randomPassword);
+
+        // Return saved employee
+        return savedEmployee;
     }
+
+    private void createUserForEmployee(Employee employee, String password) {
+        User user = new User();
+        user.setEmail(employee.getCompanyMail());
+        String encodedPassword = passwordEncoder.encode(password); // Encode the password
+        user.setPassword(encodedPassword); // Save the encoded password
+        user.setRole(Role.EMPLOYEE); // Set role to EMPLOYEE
+        userService.save(user);
+        
+     // Log the encoded password for debugging
+        System.out.println("Encoded Password for user " + employee.getCompanyMail() + ": " + encodedPassword);
+    }
+
+    // Generate a random password
+    private String generateRandomPassword() {
+        int length = 10;
+        String passwordChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%";
+        SecureRandom random = new SecureRandom();
+        StringBuilder password = new StringBuilder();
+
+        for (int i = 0; i < length; i++) {
+            int index = random.nextInt(passwordChars.length());
+            password.append(passwordChars.charAt(index));
+        }
+
+        return password.toString();
+    }
+    
+    private void sendEmailWithCredentials(String toEmail, String password) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(toEmail);
+        message.setSubject("Your Employee Login Credentials");
+        message.setText("Welcome to the company! Your login credentials are:\n\n" +
+                        
+                        "Password: " + password + "\n\n" +
+                        "Please change your password after logging in.");
+        mailSender.send(message);
+    }
+    
 
     public List<Employee> getAllEmployees() {
         return employeeRepository.findAll();
@@ -26,6 +93,7 @@ public class EmployeeService {
     public Employee saveEmployee(Employee employee) {
         return employeeRepository.save(employee);
     }
+    
 
     public Employee getEmployeeById(Long id) {
         return employeeRepository.findById(id).orElse(null);
@@ -58,4 +126,6 @@ public class EmployeeService {
         // Add validation logic for employee fields
         // E.g., check employment code, emails, phone numbers, etc.
     }
+    
+ 
 }

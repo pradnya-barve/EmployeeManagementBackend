@@ -1,0 +1,375 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    height: 100vh;
+    background-color: #f4f4f4;
+}
+
+h2 {
+    padding: 20px 0px;
+}
+
+.sidebar {
+    width: 300px;
+    background-color: #0D1117;
+    color: white;
+    padding: 20px;
+    position: fixed;
+    height: 100%;
+}
+
+.sidebar h2 {
+    margin-bottom: 20px;
+    font-size: 1.5em;
+}
+
+ .design {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: #0D1117;
+    justify-content: center;
+    border-radius: 5px;
+
+
+}
+
+.value {
+    background-color: transparent;
+    border: none;
+    padding: 20px;
+    color: white;
+    font-size: 18px;
+    display: flex;
+    position: relative;
+    gap: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.value:not(:active):hover,
+.value:focus {
+    background-color: #21262C;
+}
+
+.value:focus,
+.value:active {
+    background-color: #1A1F24;
+    outline: none;
+}
+
+.value::before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: -10px;
+    width: 5px; 
+    height: 80%;
+    background-color: #2F81F7;
+    border-radius: 5px;
+    opacity: 0;
+}
+
+.value:focus::before,
+.value:active::before {
+    opacity: 1;
+}
+
+.value svg {
+    width: 15px
+}
+
+.design:hover> :not(.value:hover) {
+    transition: 300ms;
+    filter: blur(2px);
+    transform: scale(0.95, 0.95);
+}
+
+
+.input {
+    font-family: "SF Pro";
+    width: 100%;
+    max-width: 550px;
+    padding: 0.875rem;
+    font-size: 1rem;
+    border: 1.5px solid #000;
+    border-radius: 0.5rem;
+    box-shadow: 2.5px 3px 0 #000;
+    outline: none;
+    transition: ease 0.25s;
+}
+
+.input:focus {
+    box-shadow: 5.5px 7px 0 black;
+}
+
+.content {
+    margin-left: 400px;
+    padding: 20px;
+    width: calc(100% - 270px);
+    display: none;
+    /* Hide all sections by default */
+}
+
+.content.show {
+    display: block;
+    /* Show only the section with the 'show' class */
+}
+
+.content h2 {
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+.content section {
+    margin-bottom: 20px;
+}
+
+.content label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.content input,
+.content select {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.btn2 {
+    position: relative;
+    display: inline-flex;
+    /* Changed to inline-flex for better alignment */
+    align-items: center;
+    /* Center align the icon */
+    justify-content: center;
+    /* Center align the icon */
+    padding: 15px 30px;
+    border: 2px solid #fefefe;
+    /* Border color */
+    text-transform: uppercase;
+    color: #fefefe;
+    /* Text color */
+    background-color: #333;
+    /* Button background color */
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 20px;
+    transition: 0.3s;
+    cursor: pointer;
+    /* Change cursor to pointer */
+    border-radius: 5px;
+    /* Rounded corners */
+    margin: 10px;
+    /* Added margin for gap between buttons */
+}
+
+.btn2::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    /* Fixed height calculation */
+    background-color: #212121;
+    /* Background color for hover effect */
+    transition: 0.3s ease-out;
+    transform: scaleY(1);
+    z-index: 1;
+    /* Ensure it stays behind the button */
+}
+
+.btn2::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    width: calc(100% + 4px);
+    height: calc(100% - 50px);
+    background-color: #212121;
+    /* Background color for hover effect */
+    transition: 0.3s ease-out;
+    transform: scaleY(1);
+    z-index: 1;
+    /* Ensure it stays behind the button */
+}
+
+.btn2:hover::before {
+    transform: translateY(-25px);
+    height: 0;
+}
+
+.btn2:hover::after {
+    transform: scaleX(0);
+    transition-delay: 0.15s;
+}
+
+.btn2:hover {
+    border: 2px solid #fefefe;
+    /* Maintain border on hover */
+}
+
+.btn2 span {
+    position: relative;
+    z-index: 3;
+    /* Ensure text is on top */
+}
+
+.btn2 {
+    text-decoration: none;
+    border: none;
+    background-color: transparent;
+    /* Make button transparent */
+}
+
+.positionBack{
+    position: absolute;
+        /* Use absolute positioning */
+        top: 20px;
+        /* Adjust the distance from the top */
+        right: 20px;
+}
+.back {
+    
+    /* Adjust the distance from the right */
+    width: 6.5em;
+    /* Set width */
+    height: 2.3em;
+    /* Set height */
+    margin: 0.5em;
+    /* Margin around the button */
+    background: black;
+    /* Background color */
+    color: white;
+    /* Text color */
+    border: none;
+    /* No border */
+    border-radius: 0.625em;
+    /* Rounded corners */
+    font-size: 20px;
+    /* Font size */
+    font-weight: bold;
+    /* Bold font */
+    cursor: pointer;
+    /* Pointer cursor */
+    position: relative;
+    /* Position relative for after pseudo-element */
+    z-index: 1;
+    /* Layer above background */
+    overflow: hidden;
+    /* Hide overflow for pseudo-element */
+}
+
+.back:hover {
+    color: black;
+    /* Change text color on hover */
+}
+
+.back:after {
+    content: "";
+    /* Empty content for the pseudo-element */
+    background: white;
+    /* Background color for the pseudo-element */
+    position: absolute;
+    /* Absolute positioning */
+    z-index: -1;
+    /* Behind the button text */
+    left: -20%;
+    /* Adjust position */
+    right: -20%;
+    /* Adjust position */
+    top: 0;
+    /* Align to top */
+    bottom: 0;
+    /* Align to bottom */
+    transform: skewX(-45deg) scale(0, 1);
+    /* Initial scale */
+    transition: all 0.5s;
+    /* Transition for smooth effect */
+}
+
+.back:hover:after {
+    transform: skewX(-45deg) scale(1, 1);
+    /* Scale on hover */
+    transition: all 0.5s;
+    /* Maintain transition on hover */
+}
+
+.button {
+    --main-focus: #2d8cf0;
+    --font-color: #323232;
+    --bg-color-sub: #dedede;
+    --bg-color: #eee;
+    --main-color: #323232;
+    position: relative;
+    width: 150px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border: 2px solid var(--main-color);
+    box-shadow: 4px 4px var(--main-color);
+    background-color: var(--bg-color);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.button,
+.button__icon,
+.button__text {
+    transition: all 0.3s;
+}
+
+.button .button__text {
+    transform: translateX(22px);
+    color: var(--font-color);
+    font-weight: 600;
+}
+
+.button .button__icon {
+    position: absolute;
+    transform: translateX(109px);
+    height: 100%;
+    width: 39px;
+    background-color: var(--bg-color-sub);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button .svg {
+    width: 20px;
+    fill: var(--main-color);
+}
+
+.button:hover {
+    background: var(--bg-color);
+}
+
+.button:hover .button__text {
+    color: transparent;
+}
+
+.button:hover .button__icon {
+    width: 148px;
+    transform: translateX(0);
+}
+
+.button:active {
+    transform: translate(3px, 3px);
+    box-shadow: 0px 0px var(--main-color);
+}
